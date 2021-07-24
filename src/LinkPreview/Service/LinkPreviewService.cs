@@ -55,7 +55,7 @@ namespace MSiccDev.Libs.LinkTools.LinkPreview
 
 
 
-        public async Task<LinkPreviewRequest> GetLinkDataAsync(LinkPreviewRequest previewRequest, bool isCircleRedirect = false, bool retryWithoutCompressionOnFailure = true, bool noCompression = false)
+        public async Task<LinkPreviewRequest> GetLinkDataAsync(LinkPreviewRequest previewRequest, bool isCircleRedirect = false, bool retryWithoutCompressionOnFailure = true, bool noCompression = false, bool includeDescription = false)
         {
             try
             {
@@ -104,13 +104,13 @@ namespace MSiccDev.Libs.LinkTools.LinkPreview
                         }
                         else
                         {
-                            var linkPreview = await TryGetLinkPreview(response);
+                            var linkPreview = await TryGetLinkPreview(response, includeDescription);
                             previewRequest.Result = linkPreview;
                         }
                     }
                     else
                     {
-                        await TryGetLinkDataFrom302Redirects(previewRequest).ConfigureAwait(false);
+                        await TryGetLinkDataFrom302Redirects(previewRequest, includeDescription).ConfigureAwait(false);
                     }
 
                     return previewRequest;
@@ -158,11 +158,11 @@ namespace MSiccDev.Libs.LinkTools.LinkPreview
         }
 
 
-        private async Task TryGetLinkDataFrom302Redirects(LinkPreviewRequest previewRequest)
+        private async Task TryGetLinkDataFrom302Redirects(LinkPreviewRequest previewRequest, bool includeDescription)
         {
             if (previewRequest.OriginalResponse.StatusCode == HttpStatusCode.Found)
             {
-                var linkPreview = await TryGetLinkPreview(previewRequest.OriginalResponse);
+                var linkPreview = await TryGetLinkPreview(previewRequest.OriginalResponse, includeDescription);
                 previewRequest.Result = linkPreview;
             }
             else if (previewRequest.Redirects.Values.Any(r => r.StatusCode == HttpStatusCode.Found))
@@ -170,7 +170,7 @@ namespace MSiccDev.Libs.LinkTools.LinkPreview
                 var linkPreviewTasks = new List<Task<LinkInfo>>();
                 foreach (var response in previewRequest.Redirects.Values.Where(r => r.StatusCode == HttpStatusCode.Found))
                 {
-                    linkPreviewTasks.Add(TryGetLinkPreview(response));
+                    linkPreviewTasks.Add(TryGetLinkPreview(response, includeDescription));
                 }
 
                 var linkPreviews = await Task.WhenAll(linkPreviewTasks).ConfigureAwait(false);
@@ -230,7 +230,7 @@ namespace MSiccDev.Libs.LinkTools.LinkPreview
             return null;
         }
 
-        private async Task<LinkInfo> TryGetLinkPreview(HttpResponseMessage response)
+        private async Task<LinkInfo> TryGetLinkPreview(HttpResponseMessage response, bool includeDescription)
         {
             var responseContentStream = await response.Content.ReadAsStreamAsync();
 
@@ -239,7 +239,7 @@ namespace MSiccDev.Libs.LinkTools.LinkPreview
 
             html = Regex.Replace(html, @"\t|\n|\r", "");
 
-            return !string.IsNullOrWhiteSpace(html) ? html.ToLinkInfo(response.RequestMessage.RequestUri) : null;
+            return !string.IsNullOrWhiteSpace(html) ? html.ToLinkInfo(response.RequestMessage.RequestUri, includeDescription) : null;
         }
 
 

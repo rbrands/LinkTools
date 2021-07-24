@@ -9,7 +9,7 @@
 
   <!--Versioning-->
   <PropertyGroup>
-    <ProjectVersion>1.0.21261</ProjectVersion>
+    <ProjectVersion>1.0.21262</ProjectVersion>
     <PrereleaseSuffix>-pre</PrereleaseSuffix>
     <RevisionSeparator>.</RevisionSeparator>
     <Revision>1</Revision>
@@ -26,7 +26,7 @@
 
     <PackageLicenseUrl>https://github.com/MSiccDev/LinkTools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MSiccDev/LinkTools/src/LinkPreview</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MSiccDev/LinkTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/rbrands/LinkTools</RepositoryUrl>
     <PackageReleaseNotes>MSiccDev Lib to fetch link previews</PackageReleaseNotes>
     <PackageTags>link, preview, url, parsing, html</PackageTags>
 

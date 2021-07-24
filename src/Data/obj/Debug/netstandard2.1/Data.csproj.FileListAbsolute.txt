@@ -7,3 +7,12 @@
 /Users/msiccdev/Documents/GitHub/LinkTools/src/Data/obj/Debug/netstandard2.1/Data.csproj.CoreCompileInputs.cache
 /Users/msiccdev/Documents/GitHub/LinkTools/src/Data/obj/Debug/netstandard2.1/MSiccDev.Libs.LinkTools.Data.dll
 /Users/msiccdev/Documents/GitHub/LinkTools/src/Data/obj/Debug/netstandard2.1/MSiccDev.Libs.LinkTools.Data.pdb
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\bin\Debug\netstandard2.1\MSiccDev.Libs.LinkTools.Data.deps.json
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\bin\Debug\netstandard2.1\MSiccDev.Libs.LinkTools.Data.dll
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\bin\Debug\netstandard2.1\MSiccDev.Libs.LinkTools.Data.pdb
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\obj\Debug\netstandard2.1\Data.csproj.AssemblyReference.cache
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\obj\Debug\netstandard2.1\Data.AssemblyInfoInputs.cache
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\obj\Debug\netstandard2.1\Data.AssemblyInfo.cs
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\obj\Debug\netstandard2.1\Data.csproj.CoreCompileInputs.cache
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\obj\Debug\netstandard2.1\MSiccDev.Libs.LinkTools.Data.dll
+C:\Users\RobertBrands\Source\Repos\LinkTools\src\Data\obj\Debug\netstandard2.1\MSiccDev.Libs.LinkTools.Data.pdb

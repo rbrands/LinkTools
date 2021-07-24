@@ -25,7 +25,7 @@
 
     <PackageLicenseUrl>https://github.com/MSiccDev/LinkTools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MSiccDev/LinkTools/src/UrlCleaner</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MSiccDev/LinkTools</RepositoryUrl>
+    <RepositoryUrl>https://github.com/rbrands/LinkTools</RepositoryUrl>
     <PackageReleaseNotes>MSiccDev Lib to clean urls from unwanted parameters</PackageReleaseNotes>
     <PackageTags>link, preview, url, parsing, html, clean, campaign, parameters</PackageTags>
 
