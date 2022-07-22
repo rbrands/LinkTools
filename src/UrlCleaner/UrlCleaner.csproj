@@ -58,6 +58,7 @@
 
   <PropertyGroup>
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
