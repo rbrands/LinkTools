@@ -1,68 +1,54 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFrameworks>net5.0;netstandard2.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <Configurations>Debug;Release;DebugNugetPush;ReleaseNugetPush</Configurations>
   </PropertyGroup>
-
-
-
   <!--Versioning-->
   <PropertyGroup>
-    <ProjectVersion>1.0.21262</ProjectVersion>
+    <ProjectVersion>1.0.21263</ProjectVersion>
     <PrereleaseSuffix>-pre</PrereleaseSuffix>
     <RevisionSeparator>.</RevisionSeparator>
     <Revision>1</Revision>
     <ReleaseVersion>$(ProjectVersion)$(RevisionSeparator)$(Revision)</ReleaseVersion>
     <PreReleaseVersion>$(ProjectVersion)$(PrereleaseSuffix)$(RevisionSeparator)$(Revision)</PreReleaseVersion>
   </PropertyGroup>
-
   <PropertyGroup>
     <AssemblyName>MSiccDev.Libs.LinkTools.LinkPreview</AssemblyName>
     <RootNamespace>MSiccDev.Libs.LinkTools</RootNamespace>
     <PackageId>MSiccDev.Libs.LinkTools.LinkPreview</PackageId>
     <LangVersion>Latest</LangVersion>
     <NeutralLanguage>en</NeutralLanguage>
-
     <PackageLicenseUrl>https://github.com/MSiccDev/LinkTools/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/MSiccDev/LinkTools/src/LinkPreview</PackageProjectUrl>
     <RepositoryUrl>https://github.com/rbrands/LinkTools</RepositoryUrl>
     <PackageReleaseNotes>MSiccDev Lib to fetch link previews</PackageReleaseNotes>
     <PackageTags>link, preview, url, parsing, html</PackageTags>
-
     <Title>MSiccDev Library to fetch link previews</Title>
     <Summary>MSiccDev Library to fetch link previews</Summary>
     <Description>MSiccDev Library to fetch link previews</Description>
-
     <Owners>MSiccDev Software Development</Owners>
     <Authors>MSiccDev Software Development</Authors>
     <Copyright>© 2020 MSiccDev Software Development</Copyright>
   </PropertyGroup>
-
-
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.34" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-
-
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\UrlCleaner\UrlCleaner.csproj" />
     <ProjectReference Include="..\Data\Data.csproj" />
   </ItemGroup>
-
   <PropertyGroup>
     <GenerateLibraryLayout>true</GenerateLibraryLayout>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
     <DefineConstants>DEBUG</DefineConstants>
     <PackageVersion>$(PreReleaseVersion)</PackageVersion>
     <DebugType>full</DebugType>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)'=='DebugNugetPush' ">
     <DefineConstants>DEBUG</DefineConstants>
     <PackageVersion>$(PreReleaseVersion)</PackageVersion>
@@ -74,13 +60,11 @@
     <IncludeSymbols>True</IncludeSymbols>
     <IncludeContentInPack>true</IncludeContentInPack>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)'=='Release' ">
     <DefineConstants>RELEASE</DefineConstants>
     <PackageVersion>$(ReleaseVersion)</PackageVersion>
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
-
   <PropertyGroup Condition=" '$(Configuration)'=='ReleaseNugetPush' ">
     <DefineConstants>RELEASE</DefineConstants>
     <PackageVersion>$(ReleaseVersion)</PackageVersion>
@@ -89,15 +73,15 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeContentInPack>true</IncludeContentInPack>
   </PropertyGroup>
-
   <Target Name="CleanOldNupkg" BeforeTargets="Build">
     <ItemGroup>
-      <FilesToDelete Include="$(ProjectDir)$(BaseOutputPath)$(Configuration)\$(AssemblyName).*.nupkg"></FilesToDelete>
+      <FilesToDelete Include="$(ProjectDir)$(BaseOutputPath)$(Configuration)\$(AssemblyName).*.nupkg">
+      </FilesToDelete>
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
-    <Message Text="Old nupkg in $(ProjectDir)$(BaseOutputPath)$(Configuration) deleted." Importance="High"></Message>
+    <Message Text="Old nupkg in $(ProjectDir)$(BaseOutputPath)$(Configuration) deleted." Importance="High">
+    </Message>
   </Target>
-
   <!--
   You need to create your own nuget.config file 
   see https://docs.github.com/en/free-pro-team@latest/packages/guides/configuring-dotnet-cli-for-use-with-github-packages
@@ -108,5 +92,4 @@
   <Target Name="PushRelease" AfterTargets="Pack" Condition="'$(Configuration)'=='ReleaseNugetPush'">
     <Exec Command="dotnet nuget push &quot;$(ProjectDir)$(BaseOutputPath)$(Configuration)\$(PackageId).*.nupkg&quot; -s &quot;github&quot; " />
   </Target>
-
 </Project>
